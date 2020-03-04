@@ -11,19 +11,17 @@ esEstudianteActivo(alvaro, no).
 matriculado(jorge,modelos2).
 matriculado(alexandra,modelos2).
 matriculado(alvaro,modelos2).
-evaluacionCorte(corte1, tallerModelos1, modelos2).
-evaluacionCorte(corte1, tallerModelos2, modelos2).
-evaluacionCorte(corte2, tallerModelos3, modelos2).
-evaluacionCorte(corte2, tallerModelos4, modelos2).
-evaluacionCorte(corte3, finalModelos, modelos2).
 notaMaxima(50).
 notaMinima(10).
-notaParcial(jorge, tallerModelos1, 38).
-notaParcial(alvaro, tallerModelos1, 48).
-notaParcial(alexandra, tallerModelos1, 20).
-notaParcial(jorge, tallerModelos2, 50).
-notaParcial(alvaro, tallerModelos2, 45).
-notaParcial(alexandra, tallerModelos2, 30).
+notaPrimerCorte(modelos2, jorge, 50).
+notaSegundoCorte(modelos2, jorge, 40).
+notaTercerCorte(modelos2, jorge, 45).
+notaPrimerCorte(modelos2, alexandra, 45).
+notaSegundoCorte(modelos2, alexandra, 48).
+notaTercerCorte(modelos2, alexandra, 50).
+notaPrimerCorte(modelos2, alvaro, 30).
+notaSegundoCorte(modelos2, alvaro, 30).
+notaTercerCorte(modelos2, alvaro, 10).
 
 asistenciaParaPasar(Materia, X, Y):-clasesMateria(Materia, X), Y is X*0.70.
 
@@ -31,10 +29,12 @@ pasaPorAsistencia(Materia,Alumno):-
     asistenciaParaPasar(Materia,ClasesMateria,MinimoAsistencia), 
     asistenciaEstudiante(Alumno, Materia, X),X>MinimoAsistencia.
 
-listaNotasCorte(Corte, Alumno , ListaNotas):-
-    evaluacionCorte(Corte, Nota, Materia),
-    notaParcial(Alumno,Nota,Valor),
-    ListaNotas is Valor.
+notaTotal(Materia, Alumno, X):-
+    notaPrimerCorte(Materia, Alumno, Nota1),
+    notaSegundoCorte(Materia, Alumno, Nota2),
+    notaTercerCorte(Materia, Alumno, Nota3), X is sumarNotas(Nota1,Nota2,Nota3).
+
+sumarNotas(Nota1,Nota2,Nota3, NotaTotal):- NotaTotal is (Nota1*0.35 + Nota2*0.35, Nota3*0.30).
 
 
 % ['D:/Academico/Universidad/ReposModelosII/PrologExamples/CodigosDeEjemplo/Notas.pl'].
