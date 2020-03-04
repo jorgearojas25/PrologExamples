@@ -32,9 +32,6 @@ pasaPorAsistencia(Materia,Alumno):-
 notaTotal(Materia, Alumno, X):-
     notaPrimerCorte(Materia, Alumno, Nota1),
     notaSegundoCorte(Materia, Alumno, Nota2),
-    notaTercerCorte(Materia, Alumno, Nota3), X is sumarNotas(Nota1,Nota2,Nota3).
-
-sumarNotas(Nota1,Nota2,Nota3, NotaTotal):- NotaTotal is (Nota1*0.35 + Nota2*0.35, Nota3*0.30).
-
+    notaTercerCorte(Materia, Alumno, Nota3), X is Nota1*0.35 + Nota2*0.35 + Nota3*0.30.
 
 % ['D:/Academico/Universidad/ReposModelosII/PrologExamples/CodigosDeEjemplo/Notas.pl'].
